@@ -1,0 +1,201 @@
+  [1m[35m (19.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (15.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3292477360997083035);[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-05-17 10:07:34.828103"], ["updated_at", "2017-05-17 10:07:34.828103"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(3292477360997083035)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api/v0/ping" for 127.0.0.1 at 2017-05-17 12:12:30 +0200
+Processing by Api::V0::PingController#index as HTML
+Completed 200 OK in 130ms (Views: 0.2ms)
+
+
+Started GET "/api/v0/ping" for 127.0.0.1 at 2017-05-17 12:26:53 +0200
+Processing by Api::V0::PingController#index as HTML
+Completed 200 OK in 135ms (Views: 0.2ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2017-05-17 12:26:53 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (0.4.1) lib/rack/cors.rb:81:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT VERSION()[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3292477360997083035);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseTokenAuthCreateUsers (20170517103136)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "provider" character varying DEFAULT 'email' NOT NULL, "uid" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying, "last_sign_in_ip" character varying, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying, "name" character varying, "nickname" character varying, "image" character varying, "email" character varying, "tokens" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_uid_and_provider" ON "users"  ("uid", "provider")[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users"  ("confirmation_token")[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170517103136"]]
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3292477360997083035)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api/v0/ping" for 127.0.0.1 at 2017-05-17 13:28:57 +0200
+  
+NoMethodError (undefined method `mount_devise_token_auth_for' for #<ActionDispatch::Routing::Mapper:0x0055d08bd51d38>):
+  
+config/routes.rb:2:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3292477360997083035);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3292477360997083035)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api/v0/ping" for 127.0.0.1 at 2017-05-17 14:15:21 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V0::PingController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/ping" for 127.0.0.1 at 2017-05-17 14:15:26 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/ping"):
+  
+actionpack (5.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.3) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.3) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.3) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.3) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.3) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.3) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.3) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.3) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.3) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.3) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (0.4.1) lib/rack/cors.rb:81:in `call'
+railties (5.0.3) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/v1/pin0" for 127.0.0.1 at 2017-05-17 14:15:31 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/pin0"):
+  
+actionpack (5.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.3) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.3) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.3) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.3) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.3) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.3) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.3) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.3) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.3) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.3) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.3) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (0.4.1) lib/rack/cors.rb:81:in `call'
+railties (5.0.3) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/api/v0/ping" for 127.0.0.1 at 2017-05-17 14:15:38 +0200
+Processing by Api::V0::PingController#index as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3292477360997083035);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(3292477360997083035)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (5010.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "cooper_api_development"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (118.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "cooper_api_development"[0m
+  [1m[35m (119.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "cooper_api_test"[0m
+  [1m[35m (14.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (13.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3292477360997083035);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseTokenAuthCreateUsers (20170517103136)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "provider" character varying DEFAULT 'email' NOT NULL, "uid" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" character varying, "last_sign_in_ip" character varying, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying, "name" character varying, "nickname" character varying, "image" character varying, "email" character varying, "tokens" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_uid_and_provider" ON "users"  ("uid", "provider")[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_confirmation_token" ON "users"  ("confirmation_token")[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170517103136"]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-05-17 14:57:57.366255"], ["updated_at", "2017-05-17 14:57:57.366255"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3292477360997083035)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api/v0/ping" for 127.0.0.1 at 2017-05-17 16:58:42 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V0::PingController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3292477360997083035);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePerformanceData (20170517150756)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (24.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS hstore[0m
+  [1m[35m (16.3ms)[0m  [1m[35mCREATE TABLE "performance_data" ("id" serial primary key, "user_id" integer, "data" hstore, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, CONSTRAINT "fk_rails_9da9e0d13a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE  INDEX  "index_performance_data_on_user_id" ON "performance_data"  ("user_id")[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170517150756"]]
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3292477360997083035)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
